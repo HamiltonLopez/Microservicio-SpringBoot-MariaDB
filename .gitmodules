@@ -1,3 +1,6 @@
 [submodule "p-spring-update"]
 	path = p-spring-update
 	url = https://github.com/HamiltonLopez/p-spring-update.git
+[submodule "p-spring-getbyid"]
+	path = p-spring-getbyid
+	url = https://github.com/HamiltonLopez/p-spring-getbyid.git
