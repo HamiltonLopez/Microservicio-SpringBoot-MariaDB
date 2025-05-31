@@ -1,0 +1,90 @@
+version: '3.8'
+
+services:
+  mariadb:
+    image: mariadb:10.6
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=studentsdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  students-create-service:
+    build: ./students-create-service-spring
+    ports:
+      - "8081:8081"
+    environment:
+      - DB_HOST=mariadb
+      - DB_PORT=3306
+      - DB_NAME=studentsdb
+      - DB_USER=root
+      - DB_PASSWORD=root
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+  students-get-service:
+    build: ./students-get-service-spring
+    ports:
+      - "8082:8082"
+    environment:
+      - DB_HOST=mariadb
+      - DB_PORT=3306
+      - DB_NAME=studentsdb
+      - DB_USER=root
+      - DB_PASSWORD=root
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+  students-getbyid-service:
+    build: ./students-getbyid-service-spring
+    ports:
+      - "8083:8083"
+    environment:
+      - DB_HOST=mariadb
+      - DB_PORT=3306
+      - DB_NAME=studentsdb
+      - DB_USER=root
+      - DB_PASSWORD=root
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+  students-update-service:
+    build: ./students-update-service-spring
+    ports:
+      - "8084:8084"
+    environment:
+      - DB_HOST=mariadb
+      - DB_PORT=3306
+      - DB_NAME=studentsdb
+      - DB_USER=root
+      - DB_PASSWORD=root
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+  students-delete-service:
+    build: ./students-delete-service-spring
+    ports:
+      - "8085:8085"
+    environment:
+      - DB_HOST=mariadb
+      - DB_PORT=3306
+      - DB_NAME=studentsdb
+      - DB_USER=root
+      - DB_PASSWORD=root
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+volumes:
+  mariadb_data: 
