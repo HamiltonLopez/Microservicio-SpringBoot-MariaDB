@@ -4,3 +4,12 @@
 [submodule "p-spring-getbyid"]
 	path = p-spring-getbyid
 	url = https://github.com/HamiltonLopez/p-spring-getbyid.git
+[submodule "p-spring-get"]
+	path = p-spring-get
+	url = https://github.com/HamiltonLopez/p-spring-get.git
+[submodule "p-spring-create"]
+	path = p-spring-create
+	url = https://github.com/HamiltonLopez/p-spring-create.git
+[submodule "p-spring-delete"]
+	path = p-spring-delete
+	url = https://github.com/HamiltonLopez/p-spring-delete.git
